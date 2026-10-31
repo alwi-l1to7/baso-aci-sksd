@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riwayat Pesanan — Baso Aci SKSD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nunito:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="page.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav__logo"><img src="img/logo-icon.png" alt="Baso Aci SKSD" class="nav__logo-img"><span>Baso Aci <b>SKSD</b></span></a>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="menu.html" class="btn btn--sm">Pesan Baru</a>
+    </nav>
+  </header>
+
+  <main class="page" style="max-width:680px">
+    <h1 class="title">Riwayat <span class="hl">pesanan</span></h1>
+    <p class="section__sub">Catatan pesanan Tuan Pelanggan di perangkat ini. Tunjukkan nomor pesanan atau kirim lewat WhatsApp sebagai bukti pemesanan.</p>
+
+    <div id="list"></div>
+    <div id="kosong" class="box empty hidden">
+      <p style="font-weight:700;font-size:1.1rem">Belum ada pesanan tercatat.</p>
+      <p style="margin-top:.8rem"><a href="menu.html" class="btn">Pesan Sekarang →</a></p>
+    </div>
+
+    <div id="actionsWrap" class="hidden" style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;margin-top:1.5rem">
+      <a href="menu.html" class="btn">Buat Pesanan Baru →</a>
+      <button id="hapus" class="btn btn--ghost btn--sm">Hapus semua riwayat</button>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    const $ = s => document.querySelector(s);
+    const data = Orders.all();
+
+    if (!data.length) {
+      $('#kosong').classList.remove('hidden');
+    } else {
+      $('#actionsWrap').classList.remove('hidden');
+      $('#list').innerHTML = data.map(o => `
+        <article class="struk">
+          <div class="struk__head">
+            <b>${esc(o.id)}</b>
+            <span class="badge" data-id="${esc(o.id)}">${esc(o.status || 'Tercatat')}</span>
+          </div>
+          <div class="struk__date">${fmtTgl(o.waktu)}</div>
+          <ul class="sum">${strukList(o)}</ul>
+          ${metaHtml(o)}
+          ${o.buktiBayar ? `
+            <div style="margin:.8rem 0;text-align:left">
+              <b style="display:block;font-size:.85rem;margin-bottom:.3rem">Foto Bukti Transfer:</b>
+              <img src="${o.buktiBayar}" style="max-width:140px;height:auto;border:2px solid var(--ink);border-radius:8px;box-shadow:2px 2px 0 var(--ink)" alt="Bukti Transfer">
+            </div>
+          ` : ''}
+          <a class="btn btn--sm" target="_blank" rel="noopener" href="${waUrl(pesanBukti(o))}">Kirim bukti ke WhatsApp →</a>
+        </article>`).join('');
+
+      // Tarik status terbaru dari Google Sheet (kalau gagal, daftar tetap tampil)
+      if (typeof STATUS_URL === 'string' && STATUS_URL) {
+        fetch(STATUS_URL + (STATUS_URL.includes('?') ? '&' : '?') + 't=' + Date.now())
+          .then(r => r.text())
+          .then(csv => {
+            const map = {};
+            csv.split(/\r?\n/).forEach(line => {
+              const i = line.indexOf(',');
+              if (i < 0) return;
+              const id = line.slice(0, i).trim().replace(/^"|"$/g, '');
+              const st = line.slice(i + 1).trim().replace(/^"|"$/g, '');
+              if (id && st) map[id.toUpperCase()] = st;
+            });
+            document.querySelectorAll('.badge[data-id]').forEach(b => {
+              const s = map[b.dataset.id.toUpperCase()];
+              if (s) b.textContent = s;
+            });
+          })
+          .catch(() => {});
+      }
+    }
+
+    const btnHapus = document.getElementById('hapus');
+    if (btnHapus) {
+      btnHapus.addEventListener('click', () => {
+        if (confirm('Hapus semua riwayat pesanan di perangkat ini?')) {
+          Orders.clear();
+          location.reload();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu — Baso Aci SKSD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nunito:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="page.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav__logo"><img src="img/logo-icon.png" alt="Baso Aci SKSD" class="nav__logo-img"><span>Baso Aci <b>SKSD</b></span></a>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="riwayat.html">Riwayat</a>
+      <a href="#" class="btn btn--sm js-wa">Chat WA</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div id="jadwalBanner" style="margin-bottom:1.5rem"></div>
+
+    <h1 class="title">Silakan pilih <span class="hl">paketan</span>, Tuan Pelanggan</h1>
+    <p class="section__sub">Semua paket sudah termasuk baso aci, baso tahu, kekian, cikur, dan bawang goreng. Diantar langsung ke area <b class="js-area"></b>.</p>
+    <div class="grid" id="paket"></div>
+
+    <h2 class="title mt">Mau tambah <span class="hl">topping</span>?</h2>
+    <ul class="chips" id="topping"></ul>
+  </main>
+
+  <div class="cartbar">
+    <div><span id="barCount">0 item</span> · <b id="barTotal">Rp0</b></div>
+    <a href="order.html" id="go" class="btn off">Lanjut Pesan →</a>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const $ = s => document.querySelector(s);
+    let cart = Cart.get();
+    const pMatch = new URLSearchParams(location.search).get('p');
+    if (pMatch && MENU.some(m => m.id === pMatch)) { cart[pMatch] = Math.max(1, cart[pMatch] || 1); }
+    Object.keys(cart).forEach(id => { if (!MENU.some(m => m.id === id)) delete cart[id]; });
+    Cart.set(cart);
+    const q = id => cart[id] || 0;
+
+    // Tampilkan status jam operasional
+    const jadwal = getJadwalOperasional();
+    const bannerBox = $('#jadwalBanner');
+    if (bannerBox) {
+      if (jadwal.isBuka) {
+        bannerBox.innerHTML = `
+          <div class="jadwal-badge jadwal-badge--open" style="padding:.5rem 1rem">
+            <span class="dot-live"></span>
+            <span><b>Dapur Buka (08:00 - 16:00 WIB)</b> · Pesanan langsung disiapkan &amp; diantar hari ini!</span>
+          </div>`;
+      } else {
+        bannerBox.innerHTML = `
+          <div class="jadwal-badge jadwal-badge--closed" style="padding:.6rem 1rem;flex-direction:column;gap:.25rem;text-align:left">
+            <div><span class="dot-closed"></span> <b>Dapur Sedang Tutup (Lewat Jam 16:00 WIB)</b></div>
+            <span style="font-size:.82rem;font-weight:700">Pesanan tetap diterima, dan akan diproses &amp; diantar <b>besok pagi mulai jam 08:00 WIB</b>.</span>
+          </div>`;
+      }
+    }
+
+    const stepper = id => `<div class="qty" data-id="${id}">
+      <button type="button" data-d="-1" aria-label="Kurangi">−</button>
+      <output>${q(id)}</output>
+      <button type="button" data-d="1" aria-label="Tambah">+</button></div>`;
+
+    $('#paket').innerHTML = MENU.filter(m => m.tipe === 'paket').map(m => `
+      <article class="card ${m.hot ? 'card--hot' : ''}">
+        <span class="card__tag">${m.tag}</span>
+        <h3>${m.nama}</h3>
+        <div class="card__price">${rp(m.harga)}</div>
+        <ul>${m.isi.map(i => `<li>${i}</li>`).join('')}</ul>
+        ${stepper(m.id)}
+      </article>`).join('');
+
+    $('#topping').innerHTML = MENU.filter(m => m.tipe === 'topping')
+      .map(m => `<li>${m.nama} <b>+${rp(m.harga)}</b> ${stepper(m.id)}</li>`).join('');
+
+    function bar() {
+      const n = MENU.reduce((s, m) => s + q(m.id), 0);
+      const t = MENU.reduce((s, m) => s + q(m.id) * m.harga, 0);
+      $('#barCount').textContent = n + ' item';
+      $('#barTotal').textContent = rp(t);
+      $('#go').classList.toggle('off', !n);
+    }
+    bar();
+
+    document.addEventListener('click', e => {
+      const b = e.target.closest('.qty button');
+      if (!b) return;
+      const box = b.parentElement, id = box.dataset.id;
+      const n = Math.max(0, Math.min(50, q(id) + Number(b.dataset.d)));
+      if (n) cart[id] = n; else delete cart[id];
+      Cart.set(cart);
+      box.querySelector('output').textContent = n;
+      bar();
+    });
+  </script>
+</body>
+</html>

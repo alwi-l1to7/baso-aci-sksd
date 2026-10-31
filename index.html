@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baso Aci SKSD — Gamon Abis Nyoba | Bandung Street Food</title>
+  <meta name="description" content="Baso aci khas Garut-Bandung dengan racikan bumbu kencur segar dan kuah pedas gurih. Dikemas mentahan higienis, siap santap dalam 10 menit rebus di rumah.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- RUNNING BANNER TOP -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>100% BUMBU CIKUR SEGAR PRIANGAN &nbsp;·&nbsp; KUAH NGEBUL GURIH NAMPOL &nbsp;·&nbsp; PEDAS SESUKA HATI &nbsp;·&nbsp; DIANTAR MENTAHAN SIAP REBUS &nbsp;·&nbsp; ONGKIR FLAT CUMA RP2.000 &nbsp;·&nbsp; GARANSI BIKIN GAMON &nbsp;·&nbsp;</span>
+      <span>100% BUMBU CIKUR SEGAR PRIANGAN &nbsp;·&nbsp; KUAH NGEBUL GURIH NAMPOL &nbsp;·&nbsp; PEDAS SESUKA HATI &nbsp;·&nbsp; DIANTAR MENTAHAN SIAP REBUS &nbsp;·&nbsp; ONGKIR FLAT CUMA RP2.000 &nbsp;·&nbsp; GARANSI BIKIN GAMON &nbsp;·&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="nav">
+    <a href="index.html" class="nav__logo"><img src="img/logo-icon.png" alt="Baso Aci SKSD" class="nav__logo-img"><span>Baso Aci <b>SKSD</b></span></a>
+    <nav>
+      <a href="#menu-unggulan">Pilihan Menu</a>
+      <a href="#kenapa-sksd">Keunggulan</a>
+      <a href="#level-pedas">Tingkat Pedas</a>
+      <a href="#cara-masak">Cara Masak</a>
+      <a href="#testimoni">Ulasan</a>
+      <a href="#faq">FAQ</a>
+      <a href="menu.html" class="btn btn--sm">Pesan Sekarang →</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero__text">
+        <div class="hero__badges">
+          <div class="hero-brand-badge"><img src="img/logo-icon.png" alt="Logo SKSD"><span>Dapur Resmi Priangan</span></div>
+          <span class="badge-live"><span class="dot-live"></span> Dapur Buka Hari Ini</span>
+          <span class="sticker sticker--yellow">Bandung Home Made</span>
+          <span class="sticker sticker--pink">100% Halal</span>
+        </div>
+
+        <h1>Baso aci yang bikin Tuan Pelanggan <span class="hl">gamon akut</span>.</h1>
+
+        <p class="hero__sub">
+          Kuah kencur segar bumbu asli, baso aci kenyal padat dengan isian melimpah, dan topping cuanki lidah renyah. 
+          Dikemas mentahan higienis—cukup 10 menit rebus, sajian kuah gurih ngebul langsung siap di meja makan.
+        </p>
+
+        <div class="delivery-box">
+          <span class="badge-tag">PENGANTARAN</span> Diantar ke area <b class="js-area"></b> (Ongkir flat <b>Rp2.000</b>) · Dapur 08:00 - 16:00 WIB (Order lewat 16:00 diantar besok)
+        </div>
+
+        <div class="hero__cta">
+          <a href="menu.html" class="btn btn--big">Pilih Paket &amp; Pesan Sekarang →</a>
+          <a href="#" class="btn btn--ghost js-wa">Konsultasi via WhatsApp</a>
+        </div>
+
+        <ul class="hero-stats">
+          <li><span class="stat-highlight">4.9 / 5.0</span> Rating Kepuasan Pelanggan</li>
+          <li><span class="stat-highlight">10 Menit</span> Rebus Siap Santap</li>
+          <li><span class="stat-highlight">100%</span> Bumbu Rempah Segar</li>
+        </ul>
+      </div>
+
+      <!-- HERO ARTWORK: VIBRANT NEO-BRUTALIST STEAMING BOWL (ZERO EMOJIS) -->
+      <div class="hero__art">
+        <svg class="hero-bowl-art" viewBox="0 0 460 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Semangkok Baso Aci SKSD Kuah Pedas Ngebul">
+          <defs>
+            <linearGradient id="brothGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A36"/>
+              <stop offset="100%" stop-color="#C91804"/>
+            </linearGradient>
+            <linearGradient id="bowlGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFFDF6"/>
+              <stop offset="50%" stop-color="#FFFFFF"/>
+              <stop offset="100%" stop-color="#FCEFD8"/>
+            </linearGradient>
+            <linearGradient id="cuankiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFBA3A"/>
+              <stop offset="100%" stop-color="#D96E14"/>
+            </linearGradient>
+            <linearGradient id="limeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#80ED99"/>
+              <stop offset="100%" stop-color="#2D6A4F"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Steam Vapor Lines -->
+          <g class="steam-group">
+            <path class="steam steam-1" d="M190 130 Q170 95 195 65 T180 20" stroke="#FF6B5A" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="8 6"/>
+            <path class="steam steam-2" d="M230 125 Q255 85 225 55 T240 12" stroke="#FFD23F" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path class="steam steam-3" d="M275 135 Q295 100 270 70 T285 22" stroke="#FF6B5A" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="10 7"/>
+          </g>
+
+          <!-- Bowl Shadow on surface -->
+          <ellipse cx="230" cy="385" rx="160" ry="20" fill="#2B1B17" opacity="0.18"/>
+
+          <!-- Chopsticks sticking out -->
+          <g class="chopsticks">
+            <rect x="295" y="45" width="13" height="190" rx="5" transform="rotate(32 295 45)" fill="#B5651D" stroke="#2B1B17" stroke-width="4.5"/>
+            <rect x="312" y="45" width="13" height="190" rx="5" transform="rotate(36 312 45)" fill="#D47A2A" stroke="#2B1B17" stroke-width="4.5"/>
+          </g>
+
+          <!-- Cuanki Lidah (Fried Tofu Cracker) -->
+          <g class="cuanki-lidah" transform="rotate(-18 150 170)">
+            <rect x="135" y="65" width="40" height="130" rx="20" fill="url(#cuankiGrad)" stroke="#2B1B17" stroke-width="5"/>
+            <circle cx="155" cy="90" r="4" fill="#B9770E"/>
+            <circle cx="146" cy="115" r="3.5" fill="#B9770E"/>
+            <circle cx="162" cy="132" r="4" fill="#B9770E"/>
+            <circle cx="150" cy="155" r="3" fill="#B9770E"/>
+          </g>
+
+          <!-- Tahu Baso Segitiga -->
+          <g class="tahu-baso" transform="rotate(12 320 160)">
+            <polygon points="295,115 355,135 315,185" fill="#E67E22" stroke="#2B1B17" stroke-width="5" stroke-linejoin="round"/>
+            <circle cx="320" cy="145" r="8" fill="#F8C471" stroke="#2B1B17" stroke-width="2"/>
+          </g>
+
+          <!-- Bowl Body -->
+          <path d="M75 195 C75 345 135 375 230 375 C325 375 385 345 385 195 Z" fill="url(#bowlGrad)" stroke="#2B1B17" stroke-width="6"/>
+
+          <!-- Bowl Base / Foot -->
+          <path d="M165 370 L155 390 C185 398 275 398 305 390 L295 370 Z" fill="#ECE3CF" stroke="#2B1B17" stroke-width="5"/>
+
+          <!-- Soup Broth Surface -->
+          <ellipse cx="230" cy="195" rx="150" ry="48" fill="url(#brothGrad)" stroke="#2B1B17" stroke-width="5"/>
+          <path d="M115 195 C145 224 315 224 345 195" stroke="#FFA07A" stroke-width="5" fill="none" opacity="0.7"/>
+          <ellipse cx="230" cy="188" rx="125" ry="30" fill="#E02E1B" opacity="0.45"/>
+
+          <!-- Floating Baso Aci Mascot Ball -->
+          <g class="baso-mascot">
+            <circle cx="185" cy="205" r="34" fill="#FFF2D6" stroke="#2B1B17" stroke-width="5"/>
+            <circle cx="173" cy="202" r="4.5" fill="#2B1B17"/>
+            <path d="M190 200 Q196 193 202 200" stroke="#2B1B17" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="168" cy="213" rx="5.5" ry="3.5" fill="#FF8DA1"/>
+            <ellipse cx="204" cy="213" rx="5.5" ry="3.5" fill="#FF8DA1"/>
+            <path d="M180 213 Q187 222 194 213" stroke="#2B1B17" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="178" cy="184" r="1.5" fill="#2D6A4F"/>
+            <circle cx="198" cy="186" r="1.5" fill="#2D6A4F"/>
+          </g>
+
+          <!-- Baso Aci 2 -->
+          <g class="baso-2">
+            <circle cx="265" cy="200" r="30" fill="#FFF2D6" stroke="#2B1B17" stroke-width="5"/>
+            <ellipse cx="256" cy="188" rx="8" ry="4" fill="#FFFFFF" opacity="0.8"/>
+            <circle cx="275" cy="205" r="1.5" fill="#2D6A4F"/>
+            <circle cx="255" cy="210" r="1.5" fill="#C0392B"/>
+          </g>
+
+          <!-- Baso Aci 3 -->
+          <circle cx="225" cy="175" r="23" fill="#FFF2D6" stroke="#2B1B17" stroke-width="4.5"/>
+          <ellipse cx="220" cy="167" rx="6" ry="3" fill="#FFFFFF" opacity="0.8"/>
+
+          <!-- Telur Puyuh -->
+          <ellipse cx="300" cy="180" rx="14" ry="19" transform="rotate(22 300 180)" fill="#FFFFFF" stroke="#2B1B17" stroke-width="4"/>
+          <circle cx="297" cy="176" r="3.5" fill="#BDC3C7"/>
+
+          <!-- Sukro Cikur -->
+          <circle cx="138" cy="204" r="9" fill="#FFEC99" stroke="#2B1B17" stroke-width="3"/>
+          <circle cx="150" cy="218" r="8" fill="#FFEC99" stroke="#2B1B17" stroke-width="3"/>
+          <circle cx="130" cy="223" r="7" fill="#FFEC99" stroke="#2B1B17" stroke-width="3"/>
+          <circle cx="320" cy="210" r="8.5" fill="#FFEC99" stroke="#2B1B17" stroke-width="3"/>
+          <circle cx="332" cy="225" r="7.5" fill="#FFEC99" stroke="#2B1B17" stroke-width="3"/>
+
+          <!-- Chili flakes -->
+          <polygon points="215,225 220,222 218,228" fill="#780000"/>
+          <polygon points="245,215 250,212 248,220" fill="#780000"/>
+          <polygon points="175,235 180,233 177,238" fill="#780000"/>
+          <polygon points="280,228 285,225 282,232" fill="#780000"/>
+
+          <!-- Jeruk Limau Segar -->
+          <g class="lime-wedge" transform="rotate(-15 105 185)">
+            <path d="M85 185 A26 26 0 0 1 125 185 Z" fill="#2D6A4F" stroke="#2B1B17" stroke-width="4"/>
+            <path d="M88 185 A22 22 0 0 1 122 185 Z" fill="url(#limeGrad)"/>
+            <circle cx="105" cy="185" r="4" fill="#FFFFFF"/>
+            <line x1="105" y1="185" x2="94" y2="173" stroke="#FFFFFF" stroke-width="2"/>
+            <line x1="105" y1="185" x2="105" y2="167" stroke="#FFFFFF" stroke-width="2"/>
+            <line x1="105" y1="185" x2="116" y2="173" stroke="#FFFFFF" stroke-width="2"/>
+          </g>
+
+          <!-- Whole Cabe Rawit Merah -->
+          <g class="chili-pepper" transform="rotate(22 235 240)">
+            <path d="M220 235 Q248 228 262 250 Q240 257 220 235 Z" fill="#E63946" stroke="#2B1B17" stroke-width="3"/>
+            <path d="M217 236 Q210 231 208 224" stroke="#2D6A4F" stroke-width="4" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- Bowl Ribbon & Motif -->
+          <g class="bowl-graphics">
+            <path d="M82 242 C140 272 320 272 378 242 L374 268 C320 298 140 298 86 268 Z" fill="#FF6B5A" stroke="#2B1B17" stroke-width="4"/>
+            <text x="230" y="262" font-family="'Bagel Fat One', cursive" font-size="16" fill="#FFD23F" text-anchor="middle">BASO ACI SKSD</text>
+
+            <g transform="translate(212, 285) scale(0.7)">
+              <path d="M20 10 Q35 0 45 15 Q40 25 25 25 Z" fill="#E71D36" stroke="#2B1B17" stroke-width="3"/>
+              <path d="M10 25 Q35 20 40 45 Q20 55 5 40 Z" fill="#2EC4B6" stroke="#2B1B17" stroke-width="3"/>
+              <path d="M5 40 Q-15 30 -5 15 Q0 25 10 25 Z" fill="#2B1B17" stroke="#2B1B17" stroke-width="2.5"/>
+            </g>
+          </g>
+
+          <!-- Graphic Accents -->
+          <path d="M68 115 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5z" fill="#FFD23F" stroke="#2B1B17" stroke-width="2.5"/>
+          <path d="M398 95 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" fill="#FFD23F" stroke="#2B1B17" stroke-width="2.5"/>
+          <path d="M370 330 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#FFB3C7" stroke="#2B1B17" stroke-width="2"/>
+        </svg>
+
+        <span class="pill">Pedas Gurih Mantap</span>
+        <span class="sticker sticker--yellow spin">Bumbu Cikur Segar</span>
+        <span class="sticker sticker--mint float-tag">Kenyal &amp; Gurih</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: KEUNGGULAN (EDITORIAL NUMBERED CARDS) -->
+    <section id="kenapa-sksd" class="section section--cream-light">
+      <div class="section-head">
+        <span class="sticker sticker--pink">Standar Kualitas</span>
+        <h2 class="title" style="margin-top:.8rem">Kenapa Memilih <span class="hl">Baso Aci SKSD</span>?</h2>
+        <p class="section__sub">Diolah dari bahan pilihan dan racikan bumbu kencur segar rumahan khas Priangan, tanpa bahan pengawet.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card">
+          <div class="feature-badge feature-badge--coral">01</div>
+          <h3>Bumbu Cikur Segar Alami</h3>
+          <p>Diracik langsung dari kencur (cikur) dan rempah pilihan. Menghasilkan aroma sedap yang khas dengan rasa gurih seimbang yang tidak membuat serak di tenggorokan.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-badge feature-badge--yellow">02</div>
+          <h3>Tekstur Kenyal &amp; Isian Gurih</h3>
+          <p>Kepadatan baso aci yang pas, lembut saat digigit dan gurih kaldu hingga ke dalam. Tersedia varian isian ayam suwir, gajih bumbu mercon, hingga keju gurih.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-badge feature-badge--pink">03</div>
+          <h3>Topping Lengkap &amp; Renyah</h3>
+          <p>Setiap paket dilengkapi cuanki lidah renyah ukuran panjang, cirawang kenyal, ceker empuk, taburan sukro cikur garing, dan irisan jeruk limau segar.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-badge feature-badge--mint">04</div>
+          <h3>Kemasan Higienis Tahan Suhu</h3>
+          <p>Dikemas rapi dalam kemasan tertutup rapat dalam kondisi mentahan fresh. Praktis disimpan di kulkas atau freezer, siap direbus kapan pun dibutuhkan.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 3: MENU UNGGULAN (SIGNATURE PACKAGES) -->
+    <section id="menu-unggulan" class="section">
+      <div class="section-head">
+        <span class="sticker sticker--yellow">Pilihan Paket</span>
+        <h2 class="title" style="margin-top:.8rem">Paketan Favorit <span class="hl">Tuan Pelanggan</span></h2>
+        <p class="section__sub">Semua paket sudah lengkap dengan bumbu kencur gurih, minyak bawang wangi, cabai racik, dan jeruk limau.</p>
+      </div>
+
+      <div class="grid">
+        <!-- PAKET KABITA -->
+        <article class="card card--hot">
+          <span class="card__tag card__tag--hot">BEST SELLER</span>
+          <h3>Kabita</h3>
+          <p class="card__desc">Paling banyak dipesan. Porsi pas dengan paduan ceker empuk bumbu mercon dan cirawang kenyal gurih.</p>
+          <div class="card__price">Rp16.000</div>
+          <ul>
+            <li>6 butir baso aci kenyal</li>
+            <li>Cirawang kenyal gurih</li>
+            <li>Ceker empuk bumbu mercon</li>
+            <li>Telur puyuh utuh</li>
+            <li>Baso tahu &amp; kekian</li>
+            <li>Sukro cikur &amp; bawang goreng</li>
+            <li>Paket bumbu &amp; cabai racik</li>
+          </ul>
+          <a href="menu.html?p=kabita" class="btn">Pesan Paket Kabita →</a>
+        </article>
+
+        <!-- PAKET GAMON -->
+        <article class="card">
+          <span class="card__tag">EDISI LENGKAP</span>
+          <h3>Gamon</h3>
+          <p class="card__desc">Pilihan paling komplit. Bebas custom isian baso aci sesuai selera ditambah topping cuanki lidah jumbo dan odeng.</p>
+          <div class="card__price">Rp22.000</div>
+          <ul>
+            <li>Baso aci custom (ayam/gajih/keju)</li>
+            <li>Cirawang kenyal gurih</li>
+            <li>Ceker empuk mercon</li>
+            <li>Cuanki lidah renyah panjang</li>
+            <li>Odeng lembut gurih</li>
+            <li>Baso tahu, kekian &amp; cikur</li>
+            <li>Bumbu lengkap &amp; jeruk limau</li>
+          </ul>
+          <a href="menu.html?p=gamon" class="btn">Pesan Paket Gamon →</a>
+        </article>
+
+        <!-- PAKET ORIGINAL -->
+        <article class="card">
+          <span class="card__tag">PAKET KLASIK</span>
+          <h3>Original</h3>
+          <p class="card__desc">Pilihan hemat ramah kantong dengan cita rasa klasik khas Bandung. Cocok untuk teman santai sore hari.</p>
+          <div class="card__price">Rp10.000</div>
+          <ul>
+            <li>6 butir baso aci kenyal</li>
+            <li>Baso tahu gurih</li>
+            <li>Kekian lembut</li>
+            <li>Sukro cikur garing</li>
+            <li>Bawang goreng wangi</li>
+            <li>Bumbu cikur &amp; minyak bawang</li>
+            <li>Cabai bubuk bebas atur</li>
+          </ul>
+          <a href="menu.html?p=original" class="btn">Pesan Paket Original →</a>
+        </article>
+
+        <!-- SEBLAK EDITION -->
+        <article class="card">
+          <span class="card__tag card__tag--accent">EDISI SPESIAL</span>
+          <h3>Seblak Edition</h3>
+          <p class="card__desc">Perpaduan bumbu seblak kencur medok dengan baso aci kenyal, dumpling keju lumer, dan kwetiau lembut.</p>
+          <div class="card__price">Rp21.000</div>
+          <ul>
+            <li>Baso aci khas SKSD</li>
+            <li>Dumpling keju / ayam lumer</li>
+            <li>Ceker empuk bumbu mercon</li>
+            <li>Makaroni &amp; Kwetiau kenyal</li>
+            <li>Bumbu seblak kencur medok</li>
+            <li>Sukro cikur &amp; jeruk limau</li>
+          </ul>
+          <a href="menu.html?p=seblak" class="btn">Pesan Seblak Edition →</a>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:2.5rem">
+        <p style="font-weight:800;font-size:1.05rem;margin-bottom:1rem">Ingin menambah ceker pedas, cirawang, atau telur puyuh ekstra?</p>
+        <a href="menu.html" class="btn btn--ghost" style="box-shadow:var(--shadow)">Lihat Semua Pilihan Menu &amp; Topping →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 4: TINGKAT PEDAS INTERAKTIF -->
+    <section id="level-pedas" class="section section--alt">
+      <div class="section-head">
+        <span class="sticker sticker--yellow">Atur Kepedasan</span>
+        <h2 class="title" style="margin-top:.8rem">Tingkat Pedas: <span class="hl">Sesuai Selera</span></h2>
+        <p class="section__sub" style="color:var(--ink)">Bumbu cabai dan minyak rempah dikemas terpisah di setiap paket, sehingga takaran kepedasan dapat disesuaikan sepenuhnya oleh Tuan Pelanggan.</p>
+      </div>
+
+      <div class="spice-box">
+        <div class="spice-nav" role="tablist">
+          <button type="button" class="spice-btn" data-lvl="1" role="tab">Level 1: Santai</button>
+          <button type="button" class="spice-btn" data-lvl="2" role="tab">Level 2: Sedang</button>
+          <button type="button" class="spice-btn active" data-lvl="3" role="tab">Level 3: Pedas Nampol</button>
+          <button type="button" class="spice-btn" data-lvl="4" role="tab">Level 4: Ekstra Mercon</button>
+        </div>
+
+        <div class="spice-result">
+          <div class="spice-header">
+            <span class="spice-level-title" id="spiceTitle">Level 3 — Pedas Nampol (Paling Favorit)</span>
+            <span class="heat-meter-tag" id="spiceScaleTag">Tingkat Pedas: 75%</span>
+          </div>
+
+          <div class="spice-bar-track">
+            <div class="spice-bar-fill" id="spiceBar" style="width:75%"></div>
+          </div>
+
+          <p class="spice-desc" id="spiceDesc">
+            "Takaran paling ideal dan paling banyak dipesan. Perpaduan cabai dan rempah kencur yang menyatu seimbang menghasilkan sensasi pedas gurih yang mantap di lidah tanpa menghilangkan kelezatan kaldu."
+          </p>
+
+          <div class="spice-footer">
+            <span class="spice-tip" id="spiceTip">
+              <b>Rekomendasi Pendamping:</b> Es Teh Manis Jumbo dingin.
+            </span>
+            <a href="menu.html" class="btn btn--sm">Pilih Level Ini →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CARA MEMASAK (EDITORIAL RECIPE STEPS) -->
+    <section id="cara-masak" class="section">
+      <div class="section-head">
+        <span class="sticker sticker--pink">Praktis &amp; Cepat</span>
+        <h2 class="title" style="margin-top:.8rem">Cara Masak: <span class="hl">Cukup 10 Menit</span></h2>
+        <p class="section__sub">Proses memasak sederhana seperti membuat mie instan biasa. Semua bumbu sudah siap tuang.</p>
+      </div>
+
+      <div class="cook-grid">
+        <div class="cook-step">
+          <div class="cook-step-top">
+            <span class="cook-tag">LANGKAH 01</span>
+          </div>
+          <h3>Didihkan Air 250ml</h3>
+          <p>Rebus air sebanyak kurang lebih 250–300 ml di panci kecil hingga benar-benar mendidih bergolak.</p>
+        </div>
+
+        <div class="cook-step">
+          <div class="cook-step-top">
+            <span class="cook-tag">LANGKAH 02</span>
+          </div>
+          <h3>Rebus Baso &amp; Topping</h3>
+          <p>Masukkan baso aci, tahu, dan ceker. Rebus selama 5–7 menit hingga teksturnya lembut dan mengapung di permukaan.</p>
+        </div>
+
+        <div class="cook-step">
+          <div class="cook-step-top">
+            <span class="cook-tag">LANGKAH 03</span>
+          </div>
+          <h3>Siapkan Bumbu di Mangkok</h3>
+          <p>Tuang bumbu kencur gurih, minyak bawang wangi, dan cabai racik sesuai selera kepedasan ke dalam mangkok saji.</p>
+        </div>
+
+        <div class="cook-step">
+          <div class="cook-step-top">
+            <span class="cook-tag">LANGKAH 04</span>
+          </div>
+          <h3>Tuang &amp; Sajikan Hangat</h3>
+          <p>Tuang kuah mendidih dan baso ke mangkok, peras jeruk limau segar, lalu taburkan sukro cikur renyah. Siap dinikmati.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: ULASAN PELANGGAN -->
+    <section id="testimoni" class="section section--cream-light">
+      <div class="section-head">
+        <span class="sticker sticker--yellow">Ulasan Jujur</span>
+        <h2 class="title" style="margin-top:.8rem">Kata Pelanggan yang <span class="hl">Sudah Mencoba</span></h2>
+        <p class="section__sub">Ulasan asli dari para penikmat kuah kencur SKSD di Baleendah, Dayeuhkolot, dan Rancamanyar.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <article class="review-card">
+          <div>
+            <div class="rating-stars" aria-label="5 dari 5 bintang">★★★★★</div>
+            <p class="review-text">“Awalnya penasaran karena rekomendasi teman kantor. Kuahnya benar-benar terasa kencur segar asli, bukan sekadar cabai bubuk instan. Tekstur cirawang dan cuankinya juga renyah pas.”</p>
+          </div>
+          <div class="review-author">
+            <div class="review-avatar">R</div>
+            <div class="review-meta">
+              <b>Riska Febrianti</b>
+              <span>Pelanggan di Baleendah</span>
+              <span class="verified-pill">Pembeli Terverifikasi</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div>
+            <div class="rating-stars" aria-label="5 dari 5 bintang">★★★★★</div>
+            <p class="review-text">“Paket Gamon isian gajihnya gurih mantap. Kuah pedasnya nendang tapi seimbang dengan perasan jeruk limau. Pengiriman cepat dan kondisi mentahan sampai masih sangat segar.”</p>
+          </div>
+          <div class="review-author">
+            <div class="review-avatar review-avatar--yellow">D</div>
+            <div class="review-meta">
+              <b>Dimas Prasetyo</b>
+              <span>Pelanggan di Dayeuhkolot</span>
+              <span class="verified-pill">Pembeli Terverifikasi</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div>
+            <div class="rating-stars" aria-label="5 dari 5 bintang">★★★★★</div>
+            <p class="review-text">“Kemasan vacuum rapi dan higienis. Bumbu dipisah jadi bisa disesuaikan untuk porsi anak di rumah. Diantar tepat waktu sampai Rancamanyar dengan ongkir flat yang sangat terjangkau.”</p>
+          </div>
+          <div class="review-author">
+            <div class="review-avatar review-avatar--mint">T</div>
+            <div class="review-meta">
+              <b>Neng Siti Nurhaliza</b>
+              <span>Pelanggan di Rancamanyar</span>
+              <span class="verified-pill">Pembeli Terverifikasi</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 7: FAQ (PERTANYAAN UMUM) -->
+    <section id="faq" class="section">
+      <div class="section-head">
+        <span class="sticker sticker--pink">Informasi Praktis</span>
+        <h2 class="title" style="margin-top:.8rem">Pertanyaan yang <span class="hl">Sering Diajukan</span></h2>
+        <p class="section__sub">Hal penting yang perlu diketahui sebelum melakukan pemesanan hari ini.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button type="button" class="faq-btn" aria-expanded="true">
+            <span>Berapa lama daya simpan baso aci mentahan ini?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-body">
+            Pada suhu ruangan biasa produk tahan 2–3 hari perjalanan. Jika disimpan di dalam chiller kulkas tahan 5–7 hari, dan di dalam freezer beku tahan hingga 3–4 minggu. Sangat praktis untuk persediaan hidangan hangat di rumah.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-btn" aria-expanded="false">
+            <span>Berapa biaya pengantaran dan mencakup wilayah mana saja?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-body">
+            Pengantaran langsung mencakup wilayah <b class="js-area"></b> dengan tarif ongkos kirim flat hanya sebesar <b>Rp2.000</b> per alamat pemesanan. Jam operasional pengantaran buka setiap hari pukul <b>08:00 – 16:00 WIB</b>. Pemesanan yang masuk setelah pukul 16:00 WIB akan langsung diproses dan diantar besok pagi mulai jam 08:00 WIB.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-btn" aria-expanded="false">
+            <span>Apakah bumbu dan cabai dikemas secara terpisah?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-body">
+            Ya, seluruh komponen (baso aci, bumbu rempah kencur, minyak bawang gurih, cabai racik, sukro cikur, hingga jeruk limau) dikemas secara higienis dalam wadah terpisah, sehingga takaran rasa dan pedas dapat disesuaikan sendiri.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-btn" aria-expanded="false">
+            <span>Metode pembayaran apa saja yang dapat digunakan?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-body">
+            Pembayaran menggunakan standar nasional <b>QRIS</b>. Dapat dipindai menggunakan aplikasi GoPay, OVO, DANA, ShopeePay, BCA Mobile, Livin Mandiri, BRImo, atau aplikasi m-banking perbankan lainnya.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: CALL TO ACTION -->
+    <section class="cta">
+      <span class="sticker sticker--yellow" style="margin-bottom:1rem">Pemesanan Hari Ini</span>
+      <h2>Siap Mencoba Kuah Cikur SKSD?</h2>
+      <p>Pesan sekarang untuk mendapatkan paket mentahan fresh siap rebus langsung diantar ke alamat Anda.</p>
+      <div class="cta__btns">
+        <a href="menu.html" class="btn btn--big">Buka Menu &amp; Pesan Sekarang →</a>
+        <a href="#" class="btn btn--ghost js-wa" style="font-size:1.15rem;padding:1.1rem 2rem">Konsultasi via WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p style="font-size:1.15rem;font-weight:900">Baso Aci <b>SKSD</b> — Resep Rumahan Priangan</p>
+    <div class="footer-links">
+      <a href="index.html">Beranda</a>
+      <a href="menu.html">Pilihan Menu</a>
+      <a href="#cara-masak">Cara Masak</a>
+      <a href="riwayat.html">Cek Riwayat Pesanan</a>
+      <a href="#" class="js-wa">Kontak WhatsApp</a>
+    </div>
+    <p>Diantar mentahan langsung ke area <b class="js-area"></b> · Pembayaran praktis via QRIS</p>
+    <p style="opacity:.65;margin-top:.8rem;font-size:.85rem">© <span id="year"></span> Baso Aci SKSD. All rights reserved.</p>
+  </footer>
+
+  <!-- MOBILE STICKY ORDER BAR -->
+  <aside class="mobile-bar" aria-label="Quick order bar">
+    <div class="mobile-bar__text">
+      <b>Baso Aci SKSD</b>
+      <span>Mulai Rp10.000 · Ongkir Flat Rp2.000</span>
+    </div>
+    <a href="menu.html" class="btn btn--sm">Pesan Sekarang →</a>
+  </aside>
+
+  <script src="app.js"></script>
+  <script>
+    // ===== INTERACTIVE SPICY LEVEL SELECTOR =====
+    const SPICE_DATA = {
+      '1': {
+        title: 'Level 1 — Santai',
+        scaleTag: 'Tingkat Pedas: 25%',
+        bar: '25%',
+        desc: '"Aroma kencur gurih dengan sentuhan cabai yang sangat ringan. Pilihan pas untuk yang ingin menikmati kelezatan kaldu tanpa rasa pedas yang berlebih."',
+        tip: '<b>Rekomendasi Pendamping:</b> Teh hangat manis atau air mineral sejuk.'
+      },
+      '2': {
+        title: 'Level 2 — Sedang',
+        scaleTag: 'Tingkat Pedas: 50%',
+        bar: '50%',
+        desc: '"Pedas hangat yang pas di lidah. Rasa kencur dan kesegaran jeruk limau semakin terasa nendang, cocok untuk santap santai sehari-hari."',
+        tip: '<b>Rekomendasi Pendamping:</b> Es jeruk peras segar.'
+      },
+      '3': {
+        title: 'Level 3 — Pedas Nampol (Paling Favorit)',
+        scaleTag: 'Tingkat Pedas: 75%',
+        bar: '75%',
+        desc: '"Takaran paling ideal dan paling banyak dipesan. Perpaduan cabai dan rempah kencur yang menyatu seimbang menghasilkan sensasi pedas gurih yang mantap di lidah tanpa menghilangkan kelezatan kaldu."',
+        tip: '<b>Rekomendasi Pendamping:</b> Es Teh Manis Jumbo dingin.'
+      },
+      '4': {
+        title: 'Level 4 — Ekstra Mercon',
+        scaleTag: 'Tingkat Pedas: 100%',
+        bar: '100%',
+        desc: '"Dikhususkan bagi para pencinta pedas sejati. Kuah merah pekat dengan konsentrasi cabai melimpah yang memberikan sensasi pedas menggigit sejak suapan pertama."',
+        tip: '<b>Wajib Disiapkan:</b> Susu murni dingin atau minuman manis porsi besar.'
+      }
+    };
+
+    const spiceBtns = document.querySelectorAll('.spice-btn');
+    const spiceTitle = document.getElementById('spiceTitle');
+    const spiceScaleTag = document.getElementById('spiceScaleTag');
+    const spiceBar = document.getElementById('spiceBar');
+    const spiceDesc = document.getElementById('spiceDesc');
+    const spiceTip = document.getElementById('spiceTip');
+
+    spiceBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lvl = btn.dataset.lvl;
+        spiceBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const d = SPICE_DATA[lvl];
+        if (d) {
+          spiceTitle.textContent = d.title;
+          spiceScaleTag.textContent = d.scaleTag;
+          spiceBar.style.width = d.bar;
+          spiceDesc.textContent = d.desc;
+          spiceTip.innerHTML = d.tip;
+        }
+      });
+    });
+
+    // ===== FAQ ACCORDION TOGGLE =====
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-btn');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        faqItems.forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

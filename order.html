@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pesan &amp; Bayar — Baso Aci SKSD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nunito:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="page.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="img/logo-icon.png" alt="Baso Aci SKSD" class="nav__logo-img">
+      <span>Baso Aci <b>SKSD</b></span>
+    </a>
+    <nav>
+      <a href="menu.html">Menu</a>
+      <a href="riwayat.html">Riwayat</a>
+    </nav>
+  </header>
+
+  <main class="page" style="max-width:580px">
+    <h1 class="title">Pesan &amp; <span class="hl">bayar</span></h1>
+
+    <!-- JADWAL OPERASIONAL BANNER -->
+    <div id="jadwalBanner" style="margin-bottom:1.5rem"></div>
+
+    <div id="orderContent">
+      <!-- RINCIAN PESANAN -->
+      <section class="box">
+        <h2>Rincian pesanan</h2>
+        <ul class="sum" id="sum"></ul>
+        <p class="help"><a href="menu.html"><b>← Ubah pesanan</b></a></p>
+      </section>
+
+      <!-- FORM DATA PENGIRIMAN -->
+      <form class="box" id="form" onsubmit="return false">
+        <h2>Data pengiriman</h2>
+        <label class="field">Nama Pemesan
+          <input name="nama" id="inputNama" required maxlength="60" autocomplete="name" placeholder="Nama lengkap Anda"></label>
+        
+        <label class="field">Nomor WhatsApp Aktif
+          <input name="telepon" id="inputTelepon" type="tel" required maxlength="20" autocomplete="tel" placeholder="Contoh: 081234567890">
+          <small>Nomor WhatsApp Anda untuk konfirmasi jam antar</small></label>
+
+        <label class="field">Alamat Lengkap &amp; Patokan
+          <textarea name="alamat" id="inputAlamat" rows="3" required maxlength="300" placeholder="Nama jalan, blok, nomor rumah, RT/RW, patokan lokasi"></textarea>
+          <small>Pengantaran langsung ke area <span class="js-area"></span></small></label>
+
+        <label class="field">Catatan Pesanan (opsional)
+          <textarea name="catatan" id="inputCatatan" rows="2" maxlength="300" placeholder="Level pedas, isian baso aci Gamon (ayam / sinti / gajih / keju), dll"></textarea></label>
+      </form>
+
+      <!-- BAGIAN PEMBAYARAN QRIS (WAJIB BUKTI BAYAR) -->
+      <section class="box pay">
+        <h2>Bayar pakai QRIS</h2>
+        <p>Nomor pesanan: <b id="payId"></b></p>
+        <div class="pay__total" id="payTotal"></div>
+        <div class="note" id="payNote"></div>
+
+        <img src="img/qris.png" alt="QRIS Resmi Baso Aci SKSD">
+        <p style="font-size:.85rem;margin:.4rem auto 1.2rem;max-width:320px;opacity:.85"><i>Scan barcode QRIS di atas menggunakan GoPay, OVO, Dana, ShopeePay, atau Mobile Banking apa saja.</i></p>
+
+        <!-- KOTAK VERIFIKASI BUKTI BAYAR -->
+        <div style="background:#FFFBF0;border:2.5px solid var(--ink);border-radius:16px;padding:1.3rem;margin:1.4rem 0;text-align:left">
+          <h3 style="font-size:1.2rem;color:var(--coral);margin-bottom:.8rem">Upload Bukti Pembayaran</h3>
+
+          <div class="field" style="margin-bottom:.8rem">
+            <label for="inputBukti">Screenshot Bukti Transfer / Resi QRIS (Wajib)</label>
+            <input type="file" id="inputBukti" accept="image/*" required class="file-input">
+            <small>Pilih foto atau screenshot struk bukti bayar Anda</small>
+
+            <!-- Preview Bukti -->
+            <div id="buktiPreviewWrap" class="bukti-preview-wrap hidden">
+              <img id="buktiPreviewImg" src="" alt="Thumbnail Bukti Bayar">
+              <div class="bukti-info">
+                <span id="buktiFileName" style="color:var(--ink)"></span>
+                <span class="bukti-badge">✓ File Bukti Siap Dikirim</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHECKBOX PERNYATAAN -->
+          <div class="pay-confirm-wrap" style="margin:1rem 0 0">
+            <label class="pay-confirm-label">
+              <input type="checkbox" id="checkPaid">
+              <span>Saya menyatakan telah benar-benar mentransfer tepat sebesar <b id="payCheckAmount"></b> dan melampirkan screenshot bukti bayar.</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="button" id="btnKonfirmasiBayar" class="btn btn--big btn--block" disabled>Kirim Pesanan &amp; Konfirmasi Pembayaran →</button>
+        <p class="help" id="btnHelpText" style="margin-top:.8rem">Tombol konfirmasi terkunci sampai Anda mengunggah screenshot bukti transfer dan mencentang pernyataan di atas.</p>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    const $ = s => document.querySelector(s);
+    const cart = Cart.get();
+    const rows = MENU.filter(m => cart[m.id]);
+
+    // Jadwal Operasional Toko
+    const jadwal = getJadwalOperasional();
+    const bannerBox = $('#jadwalBanner');
+    if (jadwal.isBuka) {
+      bannerBox.innerHTML = `
+        <div class="jadwal-badge jadwal-badge--open" style="width:100%;justify-content:center;padding:.6rem 1rem">
+          <span class="dot-live"></span>
+          <span><b>Dapur Buka (08:00 - 16:00 WIB)</b> · Pesanan langsung disiapkan &amp; diantar hari ini!</span>
+        </div>`;
+    } else {
+      bannerBox.innerHTML = `
+        <div class="jadwal-badge jadwal-badge--closed" style="width:100%;justify-content:center;padding:.6rem 1rem;flex-direction:column;gap:.2rem;text-align:center">
+          <div><span class="dot-closed"></span> <b>Dapur Sedang Tutup (Di luar jam 08:00 - 16:00 WIB)</b></div>
+          <span style="font-size:.82rem;font-weight:700">Pesanan tetap diterima, namun akan diproses &amp; diantar <b>besok pagi mulai jam 08:00 WIB</b>.</span>
+        </div>`;
+    }
+
+    // Jika keranjang kosong (misal setelah pesanan sebelumnya selesai)
+    if (!rows.length) {
+      $('#orderContent').innerHTML = `
+        <section class="box empty" style="text-align:center;padding:3rem 1.5rem">
+          <h2 style="font-size:1.8rem;margin-bottom:.8rem">Keranjang Masih Kosong</h2>
+          <p style="margin-bottom:1.6rem;color:#38221D;font-weight:600">Pesanan sebelumnya telah selesai disimpan ke riwayat. Keranjang Tuan Pelanggan saat ini 0 item. Silakan pilih menu baru untuk memesan kembali.</p>
+          <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+            <a href="menu.html" class="btn">Pilih Menu Baru →</a>
+            <a href="riwayat.html" class="btn btn--ghost">Lihat Riwayat Pesanan</a>
+          </div>
+        </section>
+      `;
+    } else {
+      const sub = rows.reduce((s, m) => s + cart[m.id] * m.harga, 0) + ONGKIR;
+      let id;
+      do { id = 'SKSD-' + Math.random().toString(36).slice(2, 7).toUpperCase(); } while (Orders.find(id));
+      const kode = 1 + Math.floor(Math.random() * 99);
+      const total = sub + kode;
+
+      const list = rows.map(m => `<li><span>${cart[m.id]}× ${m.nama}</span><b>${rp(cart[m.id] * m.harga)}</b></li>`);
+      if (ONGKIR) list.push(`<li><span>Ongkos kirim</span><b>${rp(ONGKIR)}</b></li>`);
+      list.push(`<li class="sum__total"><span>Subtotal</span><b>${rp(sub)}</b></li>`);
+      $('#sum').innerHTML = list.join('');
+
+      $('#payId').textContent = id;
+      $('#payTotal').textContent = rp(total);
+      $('#payCheckAmount').textContent = rp(total);
+      $('#payNote').textContent = `Mohon transfer PERSIS ${rp(total)}. Nominal sudah termasuk kode unik ${rp(kode)} sebagai penanda verifikasi mutasi dapur kami.`;
+
+      const checkPaid = $('#checkPaid');
+      const inputBukti = $('#inputBukti');
+      const btnKonfirmasi = $('#btnKonfirmasiBayar');
+      const btnHelpText = $('#btnHelpText');
+      const form = $('#form');
+
+      let buktiDataUrl = '';
+
+      // Kompres dan Resize Gambar Bukti Bayar agar hemat memori
+      function processBukti(file, callback) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const img = new Image();
+          img.onload = () => {
+            const cvs = document.createElement('canvas');
+            const maxW = 600;
+            let w = img.width, h = img.height;
+            if (w > maxW) {
+              h = Math.round(h * (maxW / w));
+              w = maxW;
+            }
+            cvs.width = w; cvs.height = h;
+            const ctx = cvs.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            callback(cvs.toDataURL('image/jpeg', 0.8));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Preview Gambar Bukti Bayar
+      inputBukti.addEventListener('change', () => {
+        const file = inputBukti.files[0];
+        if (file) {
+          if (!file.type.startsWith('image/')) {
+            alert('File yang diunggah wajib berupa gambar struk (JPG/PNG/JPEG).');
+            inputBukti.value = '';
+            $('#buktiPreviewWrap').classList.add('hidden');
+            validatePaymentStrict();
+            return;
+          }
+          processBukti(file, dataUrl => {
+            buktiDataUrl = dataUrl;
+            $('#buktiPreviewImg').src = buktiDataUrl;
+            $('#buktiFileName').textContent = file.name + ' (' + Math.round(file.size / 1024) + ' KB)';
+            $('#buktiPreviewWrap').classList.remove('hidden');
+            validatePaymentStrict();
+          });
+        } else {
+          buktiDataUrl = '';
+          $('#buktiPreviewWrap').classList.add('hidden');
+          validatePaymentStrict();
+        }
+      });
+
+      // Validasi: Wajib upload file bukti bayar dan centang pernyataan
+      function validatePaymentStrict() {
+        const hasFile = inputBukti.files && inputBukti.files.length > 0;
+        const isChecked = checkPaid.checked;
+
+        if (hasFile && isChecked) {
+          btnKonfirmasi.disabled = false;
+          btnHelpText.textContent = 'Bukti bayar siap & pernyataan tercentang. Klik tombol di atas untuk mengirimkan pesanan.';
+          btnHelpText.style.color = '#065F46';
+          btnHelpText.style.fontWeight = '800';
+        } else {
+          btnKonfirmasi.disabled = true;
+          let kurang = [];
+          if (!hasFile) kurang.push('Upload bukti transfer');
+          if (!isChecked) kurang.push('Centang konfirmasi');
+          btnHelpText.textContent = 'Belum lengkap: ' + kurang.join(' & ') + '. Tombol tetap terkunci demi keamanan.';
+          btnHelpText.style.color = '#B45309';
+          btnHelpText.style.fontWeight = '700';
+        }
+      }
+
+      checkPaid.addEventListener('change', validatePaymentStrict);
+
+      btnKonfirmasi.addEventListener('click', () => {
+        if (!form.reportValidity()) {
+          return;
+        }
+        if (!inputBukti.files || !inputBukti.files.length) {
+          alert('Wajib mengunggah screenshot bukti transfer / pembayaran QRIS.');
+          inputBukti.focus();
+          return;
+        }
+        if (!checkPaid.checked) {
+          alert('Silakan centang pernyataan konfirmasi pembayaran.');
+          checkPaid.focus();
+          return;
+        }
+
+        const f = Object.fromEntries(new FormData(form));
+        const o = {
+          id,
+          waktu: new Date().toISOString(),
+          nama: f.nama.trim(),
+          telepon: (f.telepon || '').trim(),
+          alamat: f.alamat.trim(),
+          catatan: (f.catatan || '').trim(),
+          buktiBayar: buktiDataUrl || '',
+          jadwalAntar: jadwal.jadwalBadge,
+          items: rows.map(m => ({ id: m.id, nama: m.nama, harga: m.harga, qty: cart[m.id] })),
+          ongkir: ONGKIR, kode, total,
+          status: jadwal.isBuka ? 'Diproses Hari Ini' : 'Antar Besok Pagi',
+        };
+
+        // Simpan pesanan secara permanen ke riwayat (lengkap tanggal, bulan, tahun, jam, dan bukti foto)
+        Orders.add(o);
+        if (typeof kirimKeSheet === 'function') {
+          try { kirimKeSheet(o); } catch(err) {}
+        }
+
+        // RESET KERANJANG KE 0 ITEM AGAR PESANAN BERIKUTNYA BERSIH
+        Cart.clear();
+
+        // Siapkan link WhatsApp ke pemilik toko
+        const targetWaUrl = waUrl(pesanKonfirmasiLunas(o));
+
+        // Tampilkan layar sukses langsung: semua proses selesai & terkunci
+        $('#orderContent').innerHTML = `
+          <div class="success-box">
+            <div class="success-icon">✓</div>
+            <h2>Pembayaran Berhasil!</h2>
+            <p class="success-subtitle">Pesanan Anda telah diterima sistem dan siap diproses oleh dapur Baso Aci SKSD.</p>
+
+            <div class="jadwal-badge ${jadwal.isBuka ? 'jadwal-badge--open' : 'jadwal-badge--closed'}" style="margin:0 auto 1.2rem;display:inline-flex;padding:.5rem 1rem">
+              <b>Jadwal Pengantaran: ${jadwal.jadwalBadge}</b>
+            </div>
+
+            <div class="receipt-summary">
+              <div class="receipt-row"><span>Nomor Pesanan</span><b>${esc(o.id)}</b></div>
+              <div class="receipt-row"><span>Waktu Pemesanan</span><b>${fmtTgl(o.waktu)}</b></div>
+              <div class="receipt-row"><span>Jadwal Antar</span><b>${esc(o.jadwalAntar)}</b></div>
+              <div class="receipt-row"><span>Nama Pemesan</span><b>${esc(o.nama)}</b></div>
+              <div class="receipt-row"><span>No. WhatsApp</span><b>${esc(o.telepon || '-')}</b></div>
+              <div class="receipt-row"><span>Alamat Kirim</span><b>${esc(o.alamat)}</b></div>
+              <div class="receipt-row"><span>Catatan</span><b>${esc(o.catatan || '-')}</b></div>
+              <div class="receipt-row"><span>Total Tagihan</span><b>${rp(o.total)} (LUNAS via QRIS)</b></div>
+            </div>
+
+            ${buktiDataUrl ? `
+              <div style="background:#FFFBF0;border:2px solid var(--ink);border-radius:12px;padding:1rem;margin:1.2rem 0;text-align:left">
+                <b style="display:block;font-size:.9rem;margin-bottom:.5rem;color:var(--coral)">Bukti Pembayaran yang Terunggah di Sistem:</b>
+                <img src="${buktiDataUrl}" style="max-width:200px;height:auto;border:2px solid var(--ink);border-radius:8px;display:block;box-shadow:2px 2px 0 var(--ink)" alt="Bukti Transfer">
+              </div>
+            ` : ''}
+
+            <div class="wa-notice-box">
+              <p style="font-size:1.05rem;font-weight:800;margin-bottom:.4rem">Pesanan telah diteruskan ke WhatsApp Pemilik Toko!</p>
+              <p style="font-size:.9rem;margin-bottom:.8rem">Silakan klik tombol di bawah untuk membuka chat WhatsApp dan kirimkan juga foto bukti bayar tersebut ke chat pemilik toko agar pesanan langsung disiapkan.</p>
+              <a href="${targetWaUrl}" target="_blank" rel="noopener" class="btn btn--big" style="display:inline-block">Buka Chat WhatsApp Pemilik Toko →</a>
+            </div>
+
+            <div class="success-actions">
+              <a href="riwayat.html" class="btn btn--ghost">Lihat Riwayat Pesanan</a>
+              <a href="menu.html" class="btn">Pesan Menu Baru</a>
+            </div>
+          </div>
+        `;
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Otomatis buka WhatsApp ke pemilik toko dengan rincian lengkap
+        try {
+          window.open(targetWaUrl, '_blank');
+        } catch(e) {}
+      });
+    }
+  </script>
+</body>
+</html>
